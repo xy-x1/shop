@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    #box{
+        width:1220px;
+        margin: auto;
+    }
+   .shop li{
+        list-style: none;
+        width:200px;
+        height:270px;
+        border: 1px solid rgb(180, 179, 179);
+        text-align: center;
+        margin: 20px;
+        float: left;
+    }
+   .shop{
+    width:1220px;
+    height: 650px;
+    background-color: aliceblue;
+   }
+   .shop li img{
+    width:150px;
+    height: 150px;
+   }
+   .shop li h3,.shop li pre{
+    display: inline-block;
+   }
+   .shop li pre{
+    text-align: center;
+    line-height: 20px;
+    width:50px;
+    height: 20px;
+    background-color: plum;
+    border-radius: 10px;
+    color:white;
+    font-size: 12px;
+   }
+   .shop li span{
+    color:gray;
+    font-size: 12px;
+   }
+   .shop li p{
+    font-size: 14px;
+    width: 180px;
+    margin: auto;
+    color:rgb(56, 55, 55);
+   }
+   .center{
+    margin-top:50px ;
+   }
+   .top{
+    border-bottom: 1px solid gray;
+   }
+   .top p{
+    width:130px;
+    height: 25px;
+    line-height: 25px;
+    color:rgb(221, 48, 127);
+    border-bottom: 2px solid rgb(221, 48, 127);
+   }
+   .cen p{
+    display: inline-block;
+    margin: 40px 0;
+   }
+   .up{
+    border: 1px solid rgb(224, 223, 223);
+    height: 50px;
+    width: 1220px;
+    background-color: rgb(249,249,249);
+    /* margin: 20px 0; */
+   }
+   .font{
+    color: rgb(229, 124,189);
+   }
+   .cen td{
+    width: 300px;
+    height: 100px;
+    text-align: center;
+   }
+   .cen td img{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+   }
+   .cen td input,.cen td img{
+    float: left;
+    line-height: 10px;
+   }
+   .cen td input{
+    margin-top: 20px;
+   }
+   .cen td p{
+    width: 200px;
+    float: left;
+    margin: 0;
+   }
+   .small{
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgb(210, 208, 208);
+    border-top: none;
+    line-height: 50px;
+   }
+   .list{
+    width: 100%;
+    border: 1px solid rgb(210, 208, 208);
+   }
+   .small pre{
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid  rgb(36, 208, 165);
+    margin: 0 20px;
+    color: rgb(36, 208, 165);
+   }
+   .small img{
+    margin: 0 20px;
+   }
+   .button li{
+    list-style: none;
+   }
+   .button{
+    height: 250px;
+    border: 1px solid rgb(199, 197, 197) ;
+    margin-top:50px;
+   }
+   .button ul p{
+    width:200px;
+    height: 60px;
+    color: rgb(221, 48, 127);
+    border:1px solid rgb(221, 48, 127);
+    line-height: 60px;
+    text-align: center;
+    margin: 20px;
+   }
+   .button ul li{
+    float: right;
+    margin-top:-20px;
+   }
+   .button ul li pre{
+    display: inline-block;
+   }
+   .below{
+    width:100%;
+    height: 60px;
+    margin-top: 30px;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgb(199, 197, 197) ;
+    line-height: 60px;
+   }
+   .below li{
+    float: right;
+   }
+   .two{
+    width: 200px;
+    background-color: rgb(221, 48, 127);
+    text-align: center;
+    color:white;
+    margin-left:20px;
+   }
+   .minus,.plus{
+    border: none;
+    background-color: white;
+    font-size: 20px;
+   }
+   .del{
+    border: none;
+    background-color: white;
+   }
+</style>
+<body>
+
+    <div id="box">
+        <div class="shop">
+            <ul>
+                <li v-for="(item,index) in goods" @dblclick="addfun(index)">
+                    <img :src="item.photo"><br>
+                    <pre>特卖价</pre>
+                    <h3>{{item.price}}</h3>
+                    <span><del>{{item.delpir}}</del></span>
+                    <span>{{item.break}}</span>
+                    <p>{{item.details}}</p>
+                </li>
+            </ul>
+        </div>
+        <!--  -->
+        <div class="center">
+            <div class="top">
+                <p>特卖商品 19:18</p>
+            </div>
+            <div class="cen">
+                <p>配送至<b>广州市</b></p>&emsp;
+                <span>|&emsp;勾选商品即可锁定库存20分钟，倒计时内不用担心商品被抢走~</span>
+                <table class="up">
+                    <td >商品</td>
+                    <td >单价</td>
+                    <td >数量</td>
+                    <td >操作</td>
+                </table>
+                <p class="font">唯品自营</p>
+                <table class="list">
+                    <thead>
+                        <tr v-for="(item,index) in list" >
+                            <td>
+                                <input type="checkbox">
+                                <img :src="item.pho">
+                                <p>{{item.stance}}</p>
+                            </td>
+
+                            <td>{{item.money}}</td>
+
+                            <td><button class="minus" @click="lower(index)">-</button> 1 <button class="plus" @click="grow(index)">+</button></td>
+
+                            <td>
+                                <button class="del" @click="delfun">删除</button>
+                            </td>
+                        </tr>
+
+                        
+                        
+                    </thead>
+                </table>
+                <div class="small" style="margin: 0;">
+                    <pre>运费</pre>
+                    <span>新人免邮</span>
+                    <img src="./img/热门问题.png">
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="button">
+            <ul>
+            <p>使用优惠券</p>
+            <li> <span>共 <pre></pre>件商品  商品金额</span> &emsp;&emsp; &emsp;&emsp;   <span>488</span>&emsp;&emsp;  </li><br><br>
+            <li><span>总金额（不含运费）</span> &emsp;&emsp; &emsp;&emsp;    <span>488</span>&emsp;&emsp;  </li>
+            </ul>
+            <div class="below">
+                <li class="two">
+                   <span>立即结算</span>
+                </li>
+                <li>
+                    <p>请在倒计时结束前结算</p>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11111111111111111111111111111111 -->
+    <script src="../vue.js"></script>
+    <script>
+        new Vue({
+            el:'#box',
+            data(){
+                return{
+                    goods:[
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i2/2212275835536/O1CN01t0G7nJ1qlXWu3SwFY_!!0-item_pic.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i2/1136920335/O1CN01QdDhDx1ELTZjq0D4B_!!2-item_pic.png',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i2/3937219703/O1CN01pQt2NN2LY1w0NRPXZ_!!3937219703-0-C2M.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/O1CN011lTiJo1skjsnuAhIS_!!6000000005805-0-yinhe.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/O1CN01v50oPW1rD1Hal4XRc_!!6000000005596-0-yinhe.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i4/2755027798/O1CN019Egnhg27TXPPtQRRT_!!2755027798.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i1/6000000008138/O1CN015z16hM29zFplkXxvR_!!6000000008138-0-yinhe.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },{
+                        photo:'https://img.alicdn.com/bao/uploaded/i2/2212275835536/O1CN01t0G7nJ1qlXWu3SwFY_!!0-item_pic.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i2/2215551314367/O1CN01neHV6l1i88WUlsDIS_!!2215551314367.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                    {
+                        photo:'https://img.alicdn.com/bao/uploaded/i4/2755027798/O1CN019Egnhg27TXPPtQRRT_!!2755027798.jpg',
+                        price:'￥33',
+                        delpir:'￥55',
+                        break:'2.2折',
+                        details:'【毛绒小熊围巾女秋冬骑车儿童保暖护耳2023新款...】',
+                        status:'true',
+                    },
+                ]
+                ,
+                list:[]
+                   
+
+                
+            
+            }
+            }
+            ,
+            methods:{
+                delfun(index){
+                    this.list.splice(index,1)
+                },
+                addfun(index){
+                    this.list.push({
+                        pho:this.goods[index].photo,
+                        stance:this.goods[index].details,
+                        money:this.goods[index].price
+                    })
+                },
+                lower(index){
+                    this.list[index].num--
+                    if(this.goods[index].num==1){
+                        alert('最后一件了')
+                    }else if( this.list[0].status){
+                        this.cont()
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
